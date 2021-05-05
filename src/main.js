@@ -15,6 +15,7 @@ Vue.prototype.$text = {
   loading: "加载中..."
 };
 
+//图片懒加载
 import { Lazyload } from 'vant';
 Vue.use(Lazyload);
 // 注册时可以配置额外的选项

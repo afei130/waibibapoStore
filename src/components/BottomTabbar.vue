@@ -19,23 +19,23 @@
             return {
                 tabbar: [{
                     icon: "shop-o",
-                    name: "/home/Index",
-                    path: "/home/Index",
+                    name: "/Home",
+                    path: "/Home",
                     title: "首页"
                 },{
                     icon: "apps-o",
-                    name: "/sort/Index",
-                    path: "/sort/Index",
+                    name: "/Sort",
+                    path: "/Sort",
                     title: "分类"
                 },{
                     icon: "shopping-cart-o",
-                    name: "/shopping/Index",
-                    path: "/shopping/Index",
+                    name: "/Car",
+                    path: "/Car",
                     title: "购物车"
                 },{
                     icon: "user-o",
-                    name: "/mine/Index",
-                    path: "/mine/Index",
+                    name: "/Mine",
+                    path: "/Mine",
                     title: "我的"
                 }],
                 active: "",

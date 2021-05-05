@@ -10,7 +10,7 @@
           <van-card :tag="item.tag" :price="item.price" :desc="item.desc" :title="item.title" :thumb="item.thumb">
             <template #tags>
               <span v-for="(itemTag,index) in item.tags" :key="index">
-                <van-tag plain type="danger">{{itemTag.title}}</van-tag>
+                <van-tag class="card-tags" plain type="danger">{{itemTag.title}}</van-tag>
               </span>
             </template>
             <template #bottom>

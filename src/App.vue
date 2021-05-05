@@ -1,29 +1,32 @@
 <template>
-  <div id="app">
-    <keep-alive>
-      <router-view v-if="$route.meta.keepAlive" />
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive" />
-    <BottomTabbar />
-  </div>
+    <div id="app">
+        <keep-alive>
+            <router-view v-if="$route.meta.keepAlive" />
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive" />
+        <BottomTabbar />
+    </div>
 </template>
 <script>
-  import BottomTabbar from "@/components/BottomTabbar";
-  export default {
+import BottomTabbar from "@/components/BottomTabbar";
+export default {
     components: {
-      BottomTabbar
+        BottomTabbar,
     },
-  };
+};
 </script>
 <style>
-  html {
+html {
     height: 100%;
     background: #f7f8fa;
-  }
-  .img{
+}
+.img {
     width: 100%;
     height: 100%;
     max-width: 100%;
     max-height: 100%;
-  }
+}
+.card-tags {
+    margin-right: 5px;
+}
 </style>

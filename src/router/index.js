@@ -19,31 +19,47 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home/Index'
+      redirect: '/Home'
     },
     {
-      path: '/home/Index',
-      name: 'home',
+      path: '/Home',
+      name: 'Home',
       meta: { title: "首页", keepAlive: true },
-      component: resolve => require(['../views/home/Index'], resolve)
+      component: resolve => require(['../views/shop/Home'], resolve)
     },
     {
-      path: '/sort/Index',
-      name: 'sort',
+      path: '/Sort',
+      name: 'Sort',
       meta: { title: "分类", keepAlive: true },
-      component: resolve => require(['../views/sort/Index'], resolve)
+      component: resolve => require(['../views/shop/Sort'], resolve)
     },
     {
-      path: '/shopping/Index',
-      name: 'shopping',
+      path: '/Car',
+      name: 'Car',
       meta: { title: "购物车", keepAlive: true },
-      component: resolve => require(['../views/shopping/Index'], resolve)
+      component: resolve => require(['../views/shop/Car'], resolve)
     },
     {
-      path: '/mine/Index',
-      name: 'mine',
+      path: '/Mine',
+      name: 'Mine',
       meta: { title: "我的", keepAlive: true },
-      component: resolve => require(['../views/mine/Index'], resolve)
+      component: resolve => require(['../views/user/Mine'], resolve)
+    },
+    {
+      path: '/GoodsList',
+      name: 'GoodsList',
+      meta: { title: "商品列表", keepAlive: true },
+      component: resolve => require(['../views/shop/GoodsList'], resolve)
+    },{
+      path: '/GoodsDetails',
+      name: 'GoodsDetails',
+      meta: { title: "商品详情", keepAlive: true },
+      component: resolve => require(['../views/shop/GoodsDetails'], resolve)
+    },{
+      path: '/OrderList',
+      name: 'OrderList',
+      meta: { title: "我的订单", keepAlive: true },
+      component: resolve => require(['../views/shop/OrderList'], resolve)
     }
   ]
 })
