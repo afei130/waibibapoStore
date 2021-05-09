@@ -35,4 +35,8 @@ html {
 .gap {
     height: 10px;
 }
+/* 修改vant组件默认值 */
+.van-card{
+    background-color: #fff;
+}
 </style>

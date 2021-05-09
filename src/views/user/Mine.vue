@@ -6,14 +6,14 @@
             </div>
             <div class="user-container-name">用户名</div>
         </div>
-        <van-cell title="我的订单" value="查看" is-link />
+        <van-cell title="我的订单" value="查看" is-link @click="$universal.ToView('OrderList')" />
         <van-grid :clickable="true">
-            <van-grid-item icon="cash-on-deliver" text="待付款" />
-            <van-grid-item icon="logistics" text="待发货" />
-            <van-grid-item icon="send-gift-o" text="待收货" />
-            <van-grid-item icon="records" badge="99+" text="待评价" />
+            <van-grid-item icon="cash-on-deliver" text="待付款" @click="$universal.ToView('OrderList',{ active:0 })" />
+            <van-grid-item icon="logistics" text="待发货" @click="$universal.ToView('OrderList',{ active:1 })" />
+            <van-grid-item icon="send-gift-o" text="待收货" @click="$universal.ToView('OrderList',{ active:2 })" />
+            <van-grid-item icon="records" badge="99+" text="待评价" @click="$universal.ToView('OrderList',{ active:3 })" />
         </van-grid>
-        <div style="height: 10px;"></div>
+        <div class="gap" />
         <van-cell-group>
             <van-cell icon="coupon-o" title="优惠券" is-link />
             <van-cell icon="chat-o" title="消息" is-link>
@@ -33,9 +33,7 @@
 <script>
 export default {
     data() {
-        return {
-            active: 0,
-        };
+        return {};
     },
 };
 </script>
