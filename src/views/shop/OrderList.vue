@@ -12,22 +12,24 @@
                 </van-search>
             </div>
         </div>
-        <van-tabs v-model="tabs.active" offset-top="54px" sticky swipeable @change="tabsChange">
+        <van-tabs v-model="tabs.active" offset-top="53px" sticky swipeable @change="tabsChange">
             <van-tab v-for="(item,index) in tabs.titles" :key="index" :title="item">
-                <NoData :show="noData.show" :msg="noData.msg" />
-                <van-card v-for="(orderItem,orderIndex) in tabs.orders[index]" :key="orderIndex" :price="orderItem.price" :num="orderItem.num" :desc="orderItem.desc" :title="orderItem.title" :thumb="orderItem.thumb">
-                    <template #tags>
-                        <span v-for="(orderItemTagItem,TagItem) in orderItem.tags" :key="TagItem">
-                            <van-tag class="card-tags" plain type="danger">{{orderItemTagItem.title}}</van-tag>
-                        </span>
-                    </template>
-                    <template #footer>
-                        <van-button size="small" plain round @click="$universal.ToView('OrderDetails')">查看详情</van-button>
-                        <van-button v-if="orderItem.state == 2" size="small" plain round>查看物流</van-button>
-                        <van-button v-if="orderItem.state == 0" size="small" plain round>立即付款</van-button>
-                    </template>
-                </van-card>
-                <div v-show="noData.noMore" class="no-more">没有更多了</div>
+                <van-pull-refresh v-model="pullRefresh.isLoading" :success-text="pullRefresh.successText" @refresh="onRefresh">
+                    <van-card v-for="(orderItem,orderIndex) in tabs.orders[index]" :key="orderIndex" :price="orderItem.price" :num="orderItem.num" :desc="orderItem.desc" :title="orderItem.title" :thumb="orderItem.thumb">
+                        <template #tags>
+                            <span v-for="(orderItemTagItem,TagItem) in orderItem.tags" :key="TagItem">
+                                <van-tag class="card-tags" plain type="danger">{{orderItemTagItem.title}}</van-tag>
+                            </span>
+                        </template>
+                        <template #footer>
+                            <van-button size="small" plain round @click="$universal.ToView('OrderDetails')">查看详情</van-button>
+                            <van-button v-if="orderItem.state == 2" size="small" plain round>查看物流</van-button>
+                            <van-button v-if="orderItem.state == 0" size="small" round color="linear-gradient(to right, #ff6034, #ee0a24)">立即付款</van-button>
+                        </template>
+                    </van-card>
+                    <div v-show="noData.noMore" class="no-more">没有更多了</div>
+                    <NoData :show="noData.show" :msg="noData.msg" />
+                </van-pull-refresh>
             </van-tab>
         </van-tabs>
     </div>
@@ -49,9 +51,13 @@ export default {
             search: {
                 value: "",
             },
+            pullRefresh: {
+                isLoading: false,
+                successText: "刷新成功",
+            },
             tabs: {
                 active: 0,
-                titles: ["待付款", "待发货", "待收货", "待评价"],
+                titles: ["全部", "待付款", "待发货", "待收货", "待评价"],
                 orders: [
                     [
                         {
@@ -92,7 +98,7 @@ export default {
                                 "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
                             thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
                             originPrice: "6888.00",
-                            state: 0,
+                            state: 2,
                         },
                         {
                             tag: "热卖",
@@ -112,7 +118,7 @@ export default {
                                 "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
                             thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
                             originPrice: "6888.00",
-                            state: 0,
+                            state: 2,
                         },
                         {
                             tag: "热卖",
@@ -132,7 +138,7 @@ export default {
                                 "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
                             thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
                             originPrice: "6888.00",
-                            state: 0,
+                            state: 3,
                         },
                         {
                             tag: "热卖",
@@ -255,7 +261,48 @@ export default {
                             state: 0,
                         },
                     ],
-                    [],
+                    [
+                        {
+                            tag: "热卖",
+                            tags: [
+                                {
+                                    title: "满3999减620",
+                                },
+                                {
+                                    title: "12期免息",
+                                },
+                            ],
+                            price: "6199.00",
+                            num: 1,
+                            desc:
+                                "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
+                            title:
+                                "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
+                            thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
+                            originPrice: "6888.00",
+                            state: 1,
+                        },
+                        {
+                            tag: "热卖",
+                            tags: [
+                                {
+                                    title: "满3999减620",
+                                },
+                                {
+                                    title: "12期免息",
+                                },
+                            ],
+                            price: "6199.00",
+                            num: 1,
+                            desc:
+                                "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
+                            title:
+                                "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
+                            thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
+                            originPrice: "6888.00",
+                            state: 1,
+                        },
+                    ],
                     [
                         {
                             tag: "热卖",
@@ -279,6 +326,7 @@ export default {
                         },
                     ],
                     [],
+                    [],
                 ],
             },
         };
@@ -297,6 +345,11 @@ export default {
             _this.noData.show = orders.length > 0 ? false : true;
             _this.noData.noMore = !_this.noData.show;
         },
+        onRefresh() {
+            setTimeout(() => {
+                this.pullRefresh.isLoading = false;
+            }, 1000);
+        },
     },
 };
 </script>
@@ -304,7 +357,7 @@ export default {
 <style scoped>
 .search-container {
     position: relative;
-    height: 54px;
+    height: 53px;
 }
 .search-container-fixed {
     position: fixed;

@@ -15,7 +15,6 @@
         </van-grid>
         <div class="gap" />
         <van-cell-group>
-            <van-cell icon="coupon-o" title="优惠券" is-link />
             <van-cell icon="chat-o" title="消息" is-link>
                 <template #title>
                     <van-badge :content="200" max="99">
@@ -23,7 +22,7 @@
                     </van-badge>
                 </template>
             </van-cell>
-            <van-cell icon="location-o" title="收货地址" is-link />
+            <van-cell icon="location-o" title="收货地址" is-link @click="$universal.ToView('AddressList')" />
             <van-cell icon="star-o" title="我的收藏" is-link />
             <van-cell title="GitHub" is-link url="https://github.com/afei130/waibibapoStore" />
         </van-cell-group>
