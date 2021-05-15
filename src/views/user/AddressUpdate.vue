@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { areaList } from "@/utils/areaList";
+import { areaList } from "@/universal/areaList";
 import HeadTabbar from "@/components/HeadTabbar";
 export default {
     components: {
@@ -14,10 +14,18 @@ export default {
     },
     data() {
         return {
+            aid: 0,
             areaList,
             areaColumnsPlaceholder: ["请选择", "请选择", "请选择"],
             searchResult: [],
         };
+    },
+    created() {
+        let _this = this;
+        let aid = this.$route.query.aid;
+        if (aid) {
+            _this.aid = aid;
+        }
     },
     methods: {
         onSave() {

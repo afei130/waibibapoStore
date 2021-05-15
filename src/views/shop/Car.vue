@@ -14,7 +14,7 @@
                             </span>
                         </template>
                         <template #bottom>
-                            <van-stepper class="card-container-right-stepper" input-width="30px" button-size="20px" theme="round" v-model="item.num" :min="0" @change="onNum(index)" />
+                            <van-stepper class="card-container-right-stepper" input-width="30px" button-size="20px" theme="round" v-model="item.buyNum" :min="0" @change="onBuyNum(index)" />
                         </template>
                     </van-card>
                 </div>
@@ -27,16 +27,19 @@
                 </van-checkbox>
             </van-submit-bar>
         </div>
+        <BottomTabbar />
     </div>
 </template>
 
 <script>
 import HeadTabbar from "@/components/HeadTabbar";
 import NoData from "@/components/NoData";
+import BottomTabbar from "@/components/BottomTabbar";
 export default {
     components: {
         HeadTabbar,
         NoData,
+        BottomTabbar
     },
     data() {
         return {
@@ -53,67 +56,41 @@ export default {
                 buttonText: "提交订单",
             },
             cards: {
-                goods: [
-                    {
-                        checked: false,
-                        tag: "热卖",
-                        tags: [
-                            {
-                                title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
-                        ],
-                        price: "6199.00",
-                        num: 1,
-                        desc:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        title:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
-                        originPrice: "6888.00",
-                    },
-                    {
-                        checked: false,
-                        tag: "热卖",
-                        tags: [
-                            {
-                                title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
-                        ],
-                        price: "6199.00",
-                        num: 1,
-                        desc:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        title:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/apple-1.jpg",
-                        originPrice: "6888.00",
-                    },
-                ],
+                goods: [],
             },
         };
     },
     created() {
-        let goods = this.cards.goods;
-        if (goods.length > 0) {
-            this.noData.show = false;
+        let _this = this;
+        let goodsCar = localStorage.getItem("goodsCar");
+        if (goodsCar == "undefined") {
+            _this.noData.show = true;
         } else {
-            this.noData.show = true;
+            goodsCar = JSON.parse(goodsCar);
+            if (Array.isArray(goodsCar)) {
+                if (goodsCar.length > 0) {
+                    _this.noData.show = false;
+                    _this.cards.goods = goodsCar;
+                    _this.calculatePrice();
+                    _this.submitBar.checkbox.checked =
+                        goodsCar.filter((item) => item.checked).length ==
+                        goodsCar.length
+                            ? true
+                            : false;
+                }
+            } else {
+                _this.noData.show = true;
+            }
         }
     },
     methods: {
         //单选商品
         onSelect(index) {
-            console.log("onSelect");
             let _this = this;
             let goods = _this.cards.goods;
             goods[index].checked = goods[index].checked ? false : true;
             _this.calculatePrice();
+            _this.saveChange();
         },
         //全选商品
         onAllSelect() {
@@ -124,13 +101,13 @@ export default {
                 item.checked = checkbox.checked ? true : false;
             });
             _this.calculatePrice();
+            _this.saveChange();
         },
-        //增加/减少商品数量
-        onNum(index) {
-            console.log("onNum");
+        //增加/减少商品购买数量
+        onBuyNum(index) {
             let _this = this;
             let goods = _this.cards.goods;
-            if (goods[index].num > 0) {
+            if (goods[index].buyNum > 0) {
                 goods[index].checked = true;
             } else {
                 _this.$dialog
@@ -140,12 +117,15 @@ export default {
                     })
                     .then(() => {
                         goods.splice(index, 1);
+                        _this.noData.show = goods.length > 0 ? false : true;
+                        _this.saveChange();
                     })
                     .catch(() => {
-                        goods[index].num++;
+                        goods[index].buyNum++;
                     });
             }
             _this.calculatePrice();
+            _this.saveChange();
         },
         //计算价格
         calculatePrice() {
@@ -155,12 +135,30 @@ export default {
             let goods = _this.cards.goods;
             goods.forEach((item) => {
                 if (item.checked) {
-                    submitBar.price += parseFloat(item.price) * item.num * 100;
+                    submitBar.price +=
+                        parseFloat(item.price) * item.buyNum * 100;
                 }
             });
+            _this.saveChange();
+        },
+        //保存修改到本地缓存
+        saveChange() {
+            let _this = this;
+            localStorage.setItem("goodsCar", JSON.stringify(_this.cards.goods));
+            _this.$store.commit("setGoodsCarNum");
         },
         //提交订单
-        onSubmit() {},
+        onSubmit() {
+            let _this = this;
+            let goods = _this.cards.goods.filter((item) => item.checked);
+            if (goods.length > 0) {
+                _this.$utils.ToView("CarToPlaceOrder", { goods: goods });
+            } else {
+                _this.$toast.fail({
+                    message: "请选择商品",
+                });
+            }
+        },
     },
 };
 </script>

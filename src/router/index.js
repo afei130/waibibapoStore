@@ -42,6 +42,13 @@ const router = new VueRouter({
       component: (resolve) => require(["../views/shop/Car"], resolve),
     },
     {
+      path: "/CarToPlaceOrder",
+      name: "CarToPlaceOrder",
+      meta: { title: "提交订单", keepAlive: false },
+      component: (resolve) =>
+        require(["../views/shop/CarToPlaceOrder"], resolve),
+    },
+    {
       path: "/Mine",
       name: "Mine",
       meta: { title: "我的", keepAlive: false },
@@ -76,22 +83,25 @@ const router = new VueRouter({
       name: "GoodsSearch",
       meta: { title: "商品搜索", keepAlive: false },
       component: (resolve) => require(["../views/shop/GoodsSearch"], resolve),
-    },{
+    },
+    {
       path: "/AddressList",
       name: "AddressList",
       meta: { title: "我的地址", keepAlive: false },
       component: (resolve) => require(["../views/user/AddressList"], resolve),
-    },{
+    },
+    {
       path: "/AddressAdd",
       name: "AddressAdd",
       meta: { title: "添加地址", keepAlive: false },
       component: (resolve) => require(["../views/user/AddressAdd"], resolve),
-    },{
+    },
+    {
       path: "/AddressUpdate",
       name: "AddressUpdate",
       meta: { title: "修改地址", keepAlive: false },
       component: (resolve) => require(["../views/user/AddressUpdate"], resolve),
-    }
+    },
   ],
 });
 

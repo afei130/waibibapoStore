@@ -6,12 +6,12 @@
             </div>
             <div class="user-container-name">用户名</div>
         </div>
-        <van-cell title="我的订单" value="查看" is-link @click="$universal.ToView('OrderList')" />
+        <van-cell title="我的订单" value="查看" is-link @click="$utils.ToView('OrderList')" />
         <van-grid :clickable="true">
-            <van-grid-item icon="cash-on-deliver" text="待付款" @click="$universal.ToView('OrderList',{ active:0 })" />
-            <van-grid-item icon="logistics" text="待发货" @click="$universal.ToView('OrderList',{ active:1 })" />
-            <van-grid-item icon="send-gift-o" text="待收货" @click="$universal.ToView('OrderList',{ active:2 })" />
-            <van-grid-item icon="records" badge="99+" text="待评价" @click="$universal.ToView('OrderList',{ active:3 })" />
+            <van-grid-item icon="cash-on-deliver" text="待付款" @click="$utils.ToView('OrderList',{ active:0 })" />
+            <van-grid-item icon="logistics" text="待发货" @click="$utils.ToView('OrderList',{ active:1 })" />
+            <van-grid-item icon="send-gift-o" text="待收货" @click="$utils.ToView('OrderList',{ active:2 })" />
+            <van-grid-item icon="records" badge="99+" text="待评价" @click="$utils.ToView('OrderList',{ active:3 })" />
         </van-grid>
         <div class="gap" />
         <van-cell-group>
@@ -22,15 +22,20 @@
                     </van-badge>
                 </template>
             </van-cell>
-            <van-cell icon="location-o" title="收货地址" is-link @click="$universal.ToView('AddressList')" />
+            <van-cell icon="location-o" title="收货地址" is-link @click="$utils.ToView('AddressList')" />
             <van-cell icon="star-o" title="我的收藏" is-link />
             <van-cell title="GitHub" is-link url="https://github.com/afei130/waibibapoStore" />
         </van-cell-group>
+        <BottomTabbar />
     </div>
 </template>
 
 <script>
+import BottomTabbar from "@/components/BottomTabbar";
 export default {
+    components: {
+        BottomTabbar,
+    },
     data() {
         return {};
     },

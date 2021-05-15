@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { areaList } from "@/utils/areaList";
+import { areaList } from "@/universal/areaList";
 import HeadTabbar from "@/components/HeadTabbar";
 export default {
     components: {

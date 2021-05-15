@@ -22,7 +22,7 @@
                             </span>
                         </template>
                         <template #footer>
-                            <van-button size="small" plain round @click="$universal.ToView('OrderDetails')">查看详情</van-button>
+                            <van-button size="small" plain round @click="$utils.ToView('OrderDetails')">查看详情</van-button>
                             <van-button v-if="orderItem.state == 2" size="small" plain round>查看物流</van-button>
                             <van-button v-if="orderItem.state == 0" size="small" round color="linear-gradient(to right, #ff6034, #ee0a24)">立即付款</van-button>
                         </template>

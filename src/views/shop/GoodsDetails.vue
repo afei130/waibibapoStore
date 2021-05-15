@@ -1,85 +1,124 @@
 <template>
     <div>
         <HeadTabbar :title="$title" />
-        <van-swipe :autoplay="swipe.autoplay">
-            <van-swipe-item v-for="(item, index) in swipe.images" :key="index">
-                <div class="img-container">
-                    <img class="img" v-lazy="item" />
+        <NoData :show="noData.show" :msg="noData.msg" :button="noData.button" />
+        <div v-show="!noData.show">
+            <van-swipe :autoplay="swipe.autoplay">
+                <van-swipe-item v-for="(item, index) in swipe.images" :key="index">
+                    <div class="img-container">
+                        <img class="img" v-lazy="item" />
+                    </div>
+                </van-swipe-item>
+            </van-swipe>
+            <div class="frame">
+                <div class="frame-container">
+                    <van-row type="flex" justify="space-between">
+                        <van-col>
+                            <span class="frame-container-cny">{{sku.goods.coin}}</span>
+                            <span class="frame-container-price">{{sku.goods.price}}</span>
+                            <!-- <span class="frame-container-decimals">.00</span> -->
+                        </van-col>
+                    </van-row>
                 </div>
-            </van-swipe-item>
-        </van-swipe>
-        <div class="frame">
-            <div class="frame-container">
-                <van-row type="flex" justify="space-between">
-                    <van-col>
-                        <span class="frame-container-cny">￥</span>
-                        <span class="frame-container-price">106</span>
-                        <span class="frame-container-decimals">.00</span>
-                    </van-col>
-                </van-row>
+                <div>{{sku.goods.title}}</div>
             </div>
-            <div>兰叶源 懒人大号平板长拖把家用一拖净免手洗地拖地板墩布神器尘推木地板 家用款-45cm双层铝合金面板/加强伸缩杆(共1布</div>
-        </div>
-        <div class="gap" />
-        <van-tabs v-model="tabs.active" offset-top="46" sticky>
-            <van-tab title="商品介绍">
-                <div class="details" v-html="goods.details" />
-            </van-tab>
-            <van-tab title="规格参数">
-                <div class="table-container">
-                    <table class="table">
-                        <tr>
-                            <td class="table-letf">商品编号</td>
-                            <td class="table-right">1564648948994</td>
-                        </tr>
-                        <tr>
-                            <td class="table-letf">商品名称</td>
-                            <td class="table-right">兰叶源</td>
-                        </tr>
-                    </table>
-                </div>
-            </van-tab>
-        </van-tabs>
-        <van-sku v-model="sku.show" :sku="sku" :goods="sku.goods" :goods-id="sku.goodsId" :quota="sku.quota" :quota-used="sku.quotaUsed" :hide-stock="sku.hide_stock" @buy-clicked="onBuyClicked" @add-cart="onAddCartClicked" />
-        <div class="bottom-nav">
-            <van-goods-action>
-                <van-goods-action-icon icon="chat-o" text="客服" />
-                <van-goods-action-icon icon="cart-o" text="购物车" badge="2" @click="$universal.ToView('Car')" />
-                <van-goods-action-icon icon="star-o" text="收藏" />
-                <van-goods-action-button type="warning" text="加入购物车" @click="sku.show = true" />
-                <van-goods-action-button type="danger" text="立即购买" @click="sku.show = true" />
-            </van-goods-action>
+            <div class="gap" />
+            <van-tabs v-model="tabs.active" offset-top="46" sticky>
+                <van-tab title="商品介绍">
+                    <div class="details" v-html="sku.goods.details" />
+                </van-tab>
+                <van-tab title="规格参数">
+                    <div class="table-container">
+                        <table class="table">
+                            <tr>
+                                <td class="table-letf">商品编号</td>
+                                <td class="table-right">1564648948994</td>
+                            </tr>
+                            <tr>
+                                <td class="table-letf">商品名称</td>
+                                <td class="table-right">兰叶源</td>
+                            </tr>
+                        </table>
+                    </div>
+                </van-tab>
+            </van-tabs>
+            <van-sku v-model="sku.show" :sku="sku" :goods="sku.goods" :goods-id="sku.goodsId" :quota="sku.quota" :quota-used="sku.quotaUsed" :hide-stock="sku.hide_stock" @stepper-change="getSelectNum" @buy-clicked="onBuyClicked" @add-cart="onAddCartClicked" />
+            <div class="bottom-nav">
+                <van-goods-action>
+                    <van-goods-action-icon v-for="(item,index) in goodsAction.actionIcons" :key="index" :icon="item.icon" :text="item.text" :badge="item.badge" @click="$utils.ToView(item.to.name)" />
+                    <van-goods-action-button type="warning" text="加入购物车" @click="sku.show = true" />
+                    <van-goods-action-button type="danger" text="立即购买" @click="sku.show = true" />
+                </van-goods-action>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import HeadTabbar from "@/components/HeadTabbar";
+import NoData from "@/components/NoData";
 export default {
     components: {
         HeadTabbar,
+        NoData,
     },
     data() {
         return {
+            noData: {
+                msg: "商品不见了",
+                show: true,
+                button: {
+                    show: true,
+                    value: "去首页找找",
+                    to: {
+                        name: "Home",
+                    },
+                    style: {
+                        width: "160px",
+                        height: "40px",
+                        color: "#fff",
+                        background: "#1989fa",
+                    },
+                },
+            },
             swipe: {
                 autoplay: "3000",
-                images: [
-                    "https://img01.yzcdn.cn/vant/apple-1.jpg",
-                    "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                ],
+                images: [],
             },
             tabs: {
                 active: 0,
             },
-            goods: {
-                details:
-                    "<img class='img' src='https://img01.yzcdn.cn/vant/apple-2.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' />",
+            goodsAction: {
+                actionIcons: [
+                    {
+                        icon: "chat-o",
+                        text: "客服",
+                        badge: "",
+                        to: {
+                            name: "Home",
+                        },
+                    },
+                    {
+                        icon: "cart-o",
+                        text: "购物车",
+                        badge: "",
+                        to: {
+                            name: "Car",
+                        },
+                    },
+                    {
+                        icon: "star-o",
+                        text: "收藏",
+                        badge: "",
+                        to: {
+                            name: "Home",
+                        },
+                    },
+                ],
             },
             sku: {
                 show: false,
-                goods: {
-                    picture: "https://img01.yzcdn.cn/vant/apple-2.jpg",
-                },
+                goods: {},
                 goodsId: 1, //商品 id
                 quota: 0, //限购数，0 表示不限购
                 quotaUsed: 0, //已经购买过的数量
@@ -211,9 +250,70 @@ export default {
             },
         };
     },
+    created() {
+        let _this = this;
+        let goods = _this.$route.query.goods;
+        if (typeof goods == "object") {
+            _this.noData.show = false;
+            _this.swipe.images.push(goods.thumb);
+            _this.sku.goods = goods;
+            _this.getGoodsCarNum();
+        }
+    },
     methods: {
         onBuyClicked() {},
-        onAddCartClicked() {},
+        onAddCartClicked() {
+            let _this = this;
+            let goods = _this.sku.goods;
+            let goodsArr = [];
+            goodsArr.push(goods);
+            let goodsCar = localStorage.getItem("goodsCar");
+            if (goodsCar == "undefined") {
+                localStorage.setItem("goodsCar", JSON.stringify(goodsArr));
+            } else {
+                goodsCar = JSON.parse(goodsCar);
+                if (Array.isArray(goodsCar)) {
+                    if (goodsCar.length > 0) {
+                        let same = goodsCar.filter(
+                            (item) => item.id == goods.id
+                        );
+                        if (same.length > 0) {
+                            same.forEach((item) => {
+                                item.buyNum += goods.buyNum;
+                            });
+                        } else {
+                            goodsCar.push(goods);
+                        }
+                        localStorage.setItem(
+                            "goodsCar",
+                            JSON.stringify(goodsCar)
+                        );
+                    } else {
+                        localStorage.setItem(
+                            "goodsCar",
+                            JSON.stringify(goodsArr)
+                        );
+                    }
+                } else {
+                    localStorage.setItem("goodsCar", JSON.stringify(goodsArr));
+                }
+            }
+            _this.getGoodsCarNum();
+            _this.$store.commit("setGoodsCarNum");
+            _this.sku.show = false;
+            _this.$toast.success({
+                message: "添加成功",
+            });
+        },
+        getSelectNum(selectNum) {
+            let _this = this;
+            _this.sku.goods.buyNum = selectNum;
+        },
+        getGoodsCarNum() {
+            let _this = this;
+            _this.$store.commit("setGoodsCarNum");
+            _this.goodsAction.actionIcons[1].badge = _this.$store.state.goodsCarNum;
+        },
     },
 };
 </script>

@@ -4,17 +4,8 @@
             <router-view v-if="$route.meta.keepAlive" />
         </keep-alive>
         <router-view v-if="!$route.meta.keepAlive" />
-        <BottomTabbar />
     </div>
 </template>
-<script>
-import BottomTabbar from "@/components/BottomTabbar";
-export default {
-    components: {
-        BottomTabbar,
-    },
-};
-</script>
 <style>
 html {
     height: 100%;
@@ -36,7 +27,7 @@ html {
     height: 10px;
 }
 /* 修改vant组件默认值 */
-.van-card{
+.van-card {
     background-color: #fff;
 }
 </style>

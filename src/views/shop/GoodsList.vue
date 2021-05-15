@@ -1,15 +1,13 @@
 <template>
-  <div>
-      GoodsList
-  </div>
+    <div>
+        GoodsList
+    </div>
 </template>
 
 <script>
 export default {
-
-}
+};
 </script>
 
 <style>
-
 </style>

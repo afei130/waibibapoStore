@@ -42,7 +42,7 @@ export default {
     onClickLeft() {
       let _this = this;
       if (_this.left.to.length > 0) {
-          _this.$universal.ToView(_this.to);
+          _this.$utils.ToView(_this.to);
       } else {
         _this.$router.go(-1); //返回上一层
       }
@@ -50,7 +50,7 @@ export default {
     onClickRight() {
       let _this = this;
       if(_this.right.to.length > 0){
-        _this.$universal.ToView(_this.right.to);
+        _this.$utils.ToView(_this.right.to);
       }
     },
   },

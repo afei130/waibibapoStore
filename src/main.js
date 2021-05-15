@@ -26,7 +26,7 @@ Vue.use(Lazyload, {
 Vue.config.productionTip = false;
 
 //api请求
-import request from './utils/request'
+import request from './universal/request'
 Vue.prototype.$request = request;
 
 //配置信息
@@ -52,15 +52,17 @@ axios.interceptors.request.use(request => {
 // );
 
 //公共方法
-import universal from './utils/universal'
-Vue.prototype.$universal = universal;
+import utils from './universal/utils'
+Vue.prototype.$utils = utils;
 
 //路由
 import router from './router';
 
 import App from './App.vue';
+import store from './store'
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

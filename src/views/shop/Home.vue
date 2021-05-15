@@ -1,7 +1,7 @@
 <template>
     <div>
         <van-sticky>
-            <van-search v-model="search.value" placeholder="请输入搜索关键词" readonly @click="$universal.ToView('GoodsSearch')" />
+            <van-search v-model="search.value" placeholder="请输入搜索关键词" readonly @click="$utils.ToView('GoodsSearch')" />
         </van-sticky>
         <van-swipe :autoplay="swipe.autoplay">
             <van-swipe-item v-for="(item, index) in swipe.images" :key="index">
@@ -18,18 +18,23 @@
                 <span :style="grid.item.css.text">{{item.text}}</span>
             </van-grid-item>
         </van-grid>
-        <van-card v-for="(item,index) in cards.goods" :key="index" :tag="item.tag" :price="item.price" :desc="item.desc" :title="item.title" :thumb="item.thumb" :origin-price="item.originPrice" @click="$universal.ToView('GoodsDetails')">
+        <van-card v-for="(item,index) in cards.goods" :key="index" :tag="item.tag" :price="item.price" :desc="item.desc" :title="item.title" :thumb="item.thumb" :origin-price="item.originPrice" @click="$utils.ToView('GoodsDetails',{goods:item})">
             <template #tags>
                 <span v-for="(itemTag,index) in item.tags" :key="index">
                     <van-tag class="card-tags" plain type="danger">{{itemTag.title}}</van-tag>
                 </span>
             </template>
         </van-card>
+        <BottomTabbar />
     </div>
 </template>
 
 <script>
+import BottomTabbar from "@/components/BottomTabbar";
 export default {
+    components: {
+        BottomTabbar,
+    },
     data() {
         return {
             search: {
@@ -74,6 +79,7 @@ export default {
             cards: {
                 goods: [
                     {
+                        id: 1,
                         tag: "热卖",
                         tags: [
                             {
@@ -83,139 +89,41 @@ export default {
                                 title: "12期免息",
                             },
                         ],
+                        coin: "￥",
                         price: "6199.00",
+                        num: 9999,
+                        buyNum: 1,
                         desc:
                             "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
                         title:
                             "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
                         thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
                         originPrice: "6888.00",
+                        picture: "https://img01.yzcdn.cn/vant/ipad.jpeg",
+                        details:
+                            "<img class='img' src='https://img01.yzcdn.cn/vant/apple-2.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' />",
                     },
                     {
+                        id: 2,
                         tag: "热卖",
                         tags: [
                             {
                                 title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
+                            }
                         ],
-                        price: "6199.00",
+                        coin: "￥",
+                        price: "1999.00",
+                        num: 9999,
+                        buyNum: 1,
                         desc:
                             "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
                         title:
                             "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
+                        thumb: "https://img01.yzcdn.cn/vant/apple-1.jpg",
                         originPrice: "6888.00",
-                    },
-                    {
-                        tag: "热卖",
-                        tags: [
-                            {
-                                title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
-                        ],
-                        price: "6199.00",
-                        desc:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        title:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
-                        originPrice: "6888.00",
-                    },
-                    {
-                        tag: "热卖",
-                        tags: [
-                            {
-                                title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
-                        ],
-                        price: "6199.00",
-                        desc:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        title:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
-                        originPrice: "6888.00",
-                    },
-                    {
-                        tag: "热卖",
-                        tags: [
-                            {
-                                title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
-                        ],
-                        price: "6199.00",
-                        desc:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        title:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
-                        originPrice: "6888.00",
-                    },
-                    {
-                        tag: "热卖",
-                        tags: [
-                            {
-                                title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
-                        ],
-                        price: "6199.00",
-                        desc:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        title:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
-                        originPrice: "6888.00",
-                    },
-                    {
-                        tag: "热卖",
-                        tags: [
-                            {
-                                title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
-                        ],
-                        price: "6199.00",
-                        desc:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        title:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
-                        originPrice: "6888.00",
-                    },
-                    {
-                        tag: "热卖",
-                        tags: [
-                            {
-                                title: "满3999减620",
-                            },
-                            {
-                                title: "12期免息",
-                            },
-                        ],
-                        price: "6199.00",
-                        desc:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        title:
-                            "Apple iPad Pro 11英寸平板电脑 2021年新款(128G WLAN版/M1芯片Liquid视网膜屏) 深空灰色",
-                        thumb: "https://img01.yzcdn.cn/vant/ipad.jpeg",
-                        originPrice: "6888.00",
+                        picture: "https://img01.yzcdn.cn/vant/apple-1.jpg",
+                        details:
+                            "<img class='img' src='https://img01.yzcdn.cn/vant/apple-2.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' />",
                     },
                 ],
             },
