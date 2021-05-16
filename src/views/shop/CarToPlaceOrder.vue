@@ -2,7 +2,7 @@
     <div>
         <HeadTabbar :title="$title" />
         <AddressSelection @click="GetAddressId" />
-        <van-card v-for="(item,index) in data" :key="index" :num="item.num" :price="item.price" :desc="item.desc" :title="item.title" :thumb="item.thumb" />
+        <van-card v-for="(item,index) in data" :key="index" :num="item.buyNum" :price="item.price" :desc="item.desc" :title="item.title" :thumb="item.thumb" />
         <van-submit-bar :loading="false" :price="submitBar.price" :button-text="submitBar.buttonText" @submit="onSubmit" />
     </div>
 </template>
@@ -30,7 +30,7 @@ export default {
         let data = _this.$route.query.goods;
         if (Array.isArray(data)) {
             data.forEach(item => {
-              _this.submitBar.price += parseFloat(item.price) * item.num * 100;
+              _this.submitBar.price += parseFloat(item.price) * item.buyNum * 100;
             });
             _this.data = data;
         }

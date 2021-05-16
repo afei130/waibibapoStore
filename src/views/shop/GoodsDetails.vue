@@ -23,7 +23,7 @@
                 <div>{{sku.goods.title}}</div>
             </div>
             <div class="gap" />
-            <van-tabs v-model="tabs.active" offset-top="46" sticky>
+            <van-tabs v-model="tabs.active" offset-top="46" sticky animated>
                 <van-tab title="商品介绍">
                     <div class="details" v-html="sku.goods.details" />
                 </van-tab>
@@ -111,7 +111,7 @@ export default {
                         text: "收藏",
                         badge: "",
                         to: {
-                            name: "Home",
+                            name: "Mine",
                         },
                     },
                 ],
@@ -261,7 +261,13 @@ export default {
         }
     },
     methods: {
-        onBuyClicked() {},
+        onBuyClicked() {
+            let _this = this;
+            let goods = _this.sku.goods;
+            let goodsArr = [];
+            goodsArr.push(goods)
+            _this.$utils.ToView("CarToPlaceOrder", { goods: goodsArr });
+        },
         onAddCartClicked() {
             let _this = this;
             let goods = _this.sku.goods;

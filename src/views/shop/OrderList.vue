@@ -12,7 +12,7 @@
                 </van-search>
             </div>
         </div>
-        <van-tabs v-model="tabs.active" offset-top="53px" sticky swipeable @change="tabsChange">
+        <van-tabs v-model="tabs.active" offset-top="53px" sticky swipeable @change="tabsChange" animated>
             <van-tab v-for="(item,index) in tabs.titles" :key="index" :title="item">
                 <van-pull-refresh v-model="pullRefresh.isLoading" :success-text="pullRefresh.successText" @refresh="onRefresh">
                     <van-card v-for="(orderItem,orderIndex) in tabs.orders[index]" :key="orderIndex" :price="orderItem.price" :num="orderItem.num" :desc="orderItem.desc" :title="orderItem.title" :thumb="orderItem.thumb">

@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <NoData :show="noData.show" :msg="noData.msg" />
+        <NoData :show="noData.show" :msg="noData.msg" :type="noData.type" />
         <div class="foot-container">
             <van-submit-bar class="foot-container-item" :price="submitBar.price" :button-text="submitBar.buttonText" @submit="onSubmit">
                 <van-checkbox @click="onAllSelect" v-model="submitBar.checkbox.checked">{{submitBar.checkbox.buttonText}}
@@ -39,13 +39,14 @@ export default {
     components: {
         HeadTabbar,
         NoData,
-        BottomTabbar
+        BottomTabbar,
     },
     data() {
         return {
             noData: {
                 msg: "购物车空空如也",
                 show: true,
+                type: 0,
             },
             submitBar: {
                 checkbox: {
@@ -194,7 +195,7 @@ export default {
 
 .van-card__bottom {
     display: flex;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .van-card__price {

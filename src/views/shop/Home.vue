@@ -79,6 +79,7 @@ export default {
             cards: {
                 goods: [
                     {
+                        checked:true,
                         id: 1,
                         tag: "热卖",
                         tags: [
@@ -104,6 +105,7 @@ export default {
                             "<img class='img' src='https://img01.yzcdn.cn/vant/apple-2.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' /><img class='img' src='https://img01.yzcdn.cn/vant/apple-1.jpg' />",
                     },
                     {
+                        checked:true,
                         id: 2,
                         tag: "热卖",
                         tags: [
