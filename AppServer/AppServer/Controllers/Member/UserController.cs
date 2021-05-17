@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AppServer.Controllers.Member
+namespace MainModule.Controllers.Member
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

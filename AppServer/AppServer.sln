@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppServer", "AppServer\AppServer.csproj", "{80170173-D287-4EE3-8201-0F5607F93916}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainModule", "AppServer\MainModule.csproj", "{80170173-D287-4EE3-8201-0F5607F93916}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{4EF0567C-309C-4C48-88A5-469E4DD7E046}"
 EndProject

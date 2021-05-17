@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xhQDSVrFbNk7oZOgL039W/nubwKzqTdwKKCkgEPVSuizS6CDyaPjrqJdaA8o9AMT3lQLsJy+U03c7vgldHVyeg==",
+  "dgSpecHash": "aW6bvSWourMYkjeGjsUidyeh/SlJ7IWmYWuxsEvVuwF7XyZ0sx3yLBUw6hhHIJPRolvQktYRYBwEnw8aoKEIkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Fat ning\\Desktop\\MyDemo\\waibibapoStore\\AppServer\\AppServer\\AppServer.csproj",
+  "projectFilePath": "C:\\Users\\Fat ning\\Desktop\\MyDemo\\waibibapoStore\\AppServer\\AppServer\\MainModule.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fat ning\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Fat ning\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

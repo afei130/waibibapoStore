@@ -1162,9 +1162,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fat ning\\Desktop\\MyDemo\\waibibapoStore\\AppServer\\AppServer\\AppServer.csproj",
-      "projectName": "AppServer",
-      "projectPath": "C:\\Users\\Fat ning\\Desktop\\MyDemo\\waibibapoStore\\AppServer\\AppServer\\AppServer.csproj",
+      "projectUniqueName": "C:\\Users\\Fat ning\\Desktop\\MyDemo\\waibibapoStore\\AppServer\\AppServer\\MainModule.csproj",
+      "projectName": "MainModule",
+      "projectPath": "C:\\Users\\Fat ning\\Desktop\\MyDemo\\waibibapoStore\\AppServer\\AppServer\\MainModule.csproj",
       "packagesPath": "C:\\Users\\Fat ning\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Fat ning\\Desktop\\MyDemo\\waibibapoStore\\AppServer\\AppServer\\obj\\",
       "projectStyle": "PackageReference",

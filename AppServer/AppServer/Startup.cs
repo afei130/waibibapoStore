@@ -11,7 +11,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Utils.ReadFile;
 
-namespace AppServer
+namespace MainModule
 {
     public class Startup
     {

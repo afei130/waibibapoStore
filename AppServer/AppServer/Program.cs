@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Utils.ReadFile;
 
-namespace AppServer
+namespace MainModule
 {
     public class Program
     {
