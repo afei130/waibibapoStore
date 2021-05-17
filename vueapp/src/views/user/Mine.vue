@@ -53,7 +53,7 @@ export default {
             (res) => {
                 console.log(res)
                 _this.$toast.success({
-                    message: res.Msg,
+                    message: res.msg,
                     duration: 2000,
                 });
             }

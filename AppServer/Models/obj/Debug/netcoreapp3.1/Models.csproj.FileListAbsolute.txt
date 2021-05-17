@@ -9,3 +9,4 @@ C:\Users\Fat ning\Desktop\MyDemo\waibibapoStore\AppServer\Models\obj\Debug\netco
 C:\Users\Fat ning\Desktop\MyDemo\waibibapoStore\AppServer\Models\obj\Debug\netcoreapp3.1\Models.dll
 C:\Users\Fat ning\Desktop\MyDemo\waibibapoStore\AppServer\Models\obj\Debug\netcoreapp3.1\Models.pdb
 C:\Users\Fat ning\Desktop\MyDemo\waibibapoStore\AppServer\Models\obj\Debug\netcoreapp3.1\Models.genruntimeconfig.cache
+C:\Users\Fat ning\Desktop\MyDemo\waibibapoStore\AppServer\Models\obj\Debug\netcoreapp3.1\Models.csprojAssemblyReference.cache
