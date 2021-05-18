@@ -42,11 +42,11 @@ export default {
     },
     methods: {
         onAdd() {
-            this.$utils.ToView("AddressAdd");
+            this.$utils.toView("AddressAdd");
         },
         onEdit(item) {
             let aid = item.id;
-            this.$utils.ToView("AddressUpdate", { aid: aid });
+            this.$utils.toView("AddressUpdate", { aid: aid });
         },
         onSelect(item) {
             console.log(item);

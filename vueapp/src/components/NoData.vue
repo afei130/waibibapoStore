@@ -1,7 +1,7 @@
 <template>
     <div>
         <van-empty :class="position" :image="image[type]" v-show="show" :description="msg">
-            <van-button v-if="button.show" round :style="button.style" @click="$utils.ToView(button.to.name,button.to.params)">{{button.value}}</van-button>
+            <van-button v-if="button.show" round :style="button.style" @click="$utils.toView(button.to.name,button.to.params)">{{button.value}}</van-button>
         </van-empty>
     </div>
 </template>

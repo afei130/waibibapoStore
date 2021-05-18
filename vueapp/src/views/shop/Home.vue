@@ -1,7 +1,7 @@
 <template>
     <div>
         <van-sticky>
-            <van-search v-model="search.value" placeholder="请输入搜索关键词" readonly @click="$utils.ToView('GoodsSearch')" />
+            <van-search v-model="search.value" placeholder="请输入搜索关键词" readonly @click="$utils.toView('GoodsSearch')" />
         </van-sticky>
         <van-swipe :autoplay="swipe.autoplay">
             <van-swipe-item v-for="(item, index) in swipe.images" :key="index">
@@ -18,7 +18,7 @@
                 <span :style="grid.item.css.text">{{item.text}}</span>
             </van-grid-item>
         </van-grid>
-        <van-card v-for="(item,index) in cards.goods" :key="index" :tag="item.tag" :price="item.price" :desc="item.desc" :title="item.title" :thumb="item.thumb" :origin-price="item.originPrice" @click="$utils.ToView('GoodsDetails',{goods:item})">
+        <van-card v-for="(item,index) in cards.goods" :key="index" :tag="item.tag" :price="item.price" :desc="item.desc" :title="item.title" :thumb="item.thumb" :origin-price="item.originPrice" @click="$utils.toView('GoodsDetails',{goods:item})">
             <template #tags>
                 <span v-for="(itemTag,index) in item.tags" :key="index">
                     <van-tag class="card-tags" plain type="danger">{{itemTag.title}}</van-tag>

@@ -45,7 +45,7 @@
             <van-sku v-model="sku.show" :sku="sku" :goods="sku.goods" :goods-id="sku.goodsId" :quota="sku.quota" :quota-used="sku.quotaUsed" :hide-stock="sku.hide_stock" @stepper-change="getSelectNum" @buy-clicked="onBuyClicked" @add-cart="onAddCartClicked" />
             <div class="bottom-nav">
                 <van-goods-action>
-                    <van-goods-action-icon v-for="(item,index) in goodsAction.actionIcons" :key="index" :icon="item.icon" :text="item.text" :badge="item.badge" @click="$utils.ToView(item.to.name)" />
+                    <van-goods-action-icon v-for="(item,index) in goodsAction.actionIcons" :key="index" :icon="item.icon" :text="item.text" :badge="item.badge" @click="$utils.toView(item.to.name)" />
                     <van-goods-action-button type="warning" text="加入购物车" @click="sku.show = true" />
                     <van-goods-action-button type="danger" text="立即购买" @click="sku.show = true" />
                 </van-goods-action>
@@ -266,7 +266,7 @@ export default {
             let goods = _this.sku.goods;
             let goodsArr = [];
             goodsArr.push(goods)
-            _this.$utils.ToView("CarToPlaceOrder", { goods: goodsArr });
+            _this.$utils.toView("CarToPlaceOrder", { goods: goodsArr });
         },
         onAddCartClicked() {
             let _this = this;

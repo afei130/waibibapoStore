@@ -153,7 +153,7 @@ export default {
             let _this = this;
             let goods = _this.cards.goods.filter((item) => item.checked);
             if (goods.length > 0) {
-                _this.$utils.ToView("CarToPlaceOrder", { goods: goods });
+                _this.$utils.toView("CarToPlaceOrder", { goods: goods });
             } else {
                 _this.$toast.fail({
                     message: "请选择商品",

@@ -1,7 +1,7 @@
 <template>
     <div>
         <van-sticky>
-            <van-search v-model="search.value" placeholder="请输入搜索关键词" readonly @click="$utils.ToView('GoodsSearch')" />
+            <van-search v-model="search.value" placeholder="请输入搜索关键词" readonly @click="$utils.toView('GoodsSearch')" />
         </van-sticky>
         <van-tree-select :height="grid.tree.height" :items="grid.tree.sort" :main-active-index.sync="grid.tree.active">
             <template #content>

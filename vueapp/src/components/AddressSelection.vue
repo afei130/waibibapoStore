@@ -5,7 +5,7 @@
         </div>
         <van-popup style="background: #f7f8fa;" v-model="popup.show" :position="popup.position" :style="popup.style">
             <van-nav-bar title="选择地址" left-text="返回" left-arrow @click-left="popup.show = false" />
-            <van-address-list v-show="!noData.show" v-model="address.chosenAddressId" :list="address.list" :disabled-list="address.disabledList" disabled-text="以下地址超出配送范围" default-tag-text="默认" @add="$utils.ToView('AddressAdd')" @edit="onEdit" @select="onSelect" />
+            <van-address-list v-show="!noData.show" v-model="address.chosenAddressId" :list="address.list" :disabled-list="address.disabledList" disabled-text="以下地址超出配送范围" default-tag-text="默认" @add="$utils.toView('AddressAdd')" @edit="onEdit" @select="onSelect" />
             <NoData :show="noData.show" :msg="noData.msg" :button="{show:noData.button.show,value:noData.button.value,to:noData.button.to,style:noData.button.style}" />
         </van-popup>
     </div>
@@ -91,7 +91,7 @@ export default {
         onEdit(item) {
             let _this = this;
             let aid = item.id;
-            _this.$utils.ToView("AddressUpdate", { aid: aid });
+            _this.$utils.toView("AddressUpdate", { aid: aid });
         },
         onSelect(item) {
             let _this = this;

@@ -1,6 +1,6 @@
 //跳转页面
 import router from "@/router";
-function ToView(viewName, params = {}) {
+function toView(viewName, params = {}) {
   router.push({
     name: viewName,
     query: params,
@@ -9,7 +9,7 @@ function ToView(viewName, params = {}) {
 
 //消息提示框
 import { Toast } from "vant";
-function LoadingTips(message, type = 101, duration = 2000) {
+function loadingTips(message, type = 101, duration = 2000) {
   if (type === 101) {
     Toast.loading({
       message,
@@ -29,7 +29,7 @@ function LoadingTips(message, type = 101, duration = 2000) {
 }
 
 //格式化日期
-function DateFormat(date, fmt = "yyyy-mm-dd HH:MM:SS") {
+function dateFormat(date, fmt = "yyyy-mm-dd HH:MM:SS") {
   date = new Date(date);
   let ret;
   const opt = {
@@ -53,9 +53,34 @@ function DateFormat(date, fmt = "yyyy-mm-dd HH:MM:SS") {
   return fmt;
 }
 
+//封装storage存取
+const namespace = "waibibapoStore"; //命名空间，用来区分不一样项目的storage
+function saveItem(key, value) {
+  let storage = localStorage.getItem(namespace);
+  if (!storage) {
+    storage = {};
+  } else {
+    storage = JSON.parse(storage);
+  }
+  storage[key] = value;
+  localStorage.setItem(namespace, JSON.stringify(storage));
+}
+
+function loadItem(key, def) {
+  let storage = localStorage.getItem(namespace);
+  if (!storage) {
+    return def;
+  }
+  storage = JSON.parse(storage);
+  let result = storage[key];
+  return result;
+}
+//封装storage存取end
 
 export default {
-  ToView,
-  LoadingTips,
-  DateFormat
+  toView,
+  loadingTips,
+  dateFormat,
+  saveItem,
+  loadItem
 };
