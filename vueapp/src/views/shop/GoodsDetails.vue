@@ -133,9 +133,9 @@ export default {
                                 id: 1001, // skuValueId：规格值 id
                                 name: "红色", // skuValueName：规格值名称
                                 imgUrl:
-                                    "https://img01.yzcdn.cn/vant/apple-1.jpg", // 规格类目图片，只有第一个规格类目可以定义图片
+                                    "https://img01.yzcdn.cn/vant/apple-1.jpg", // 点击该对象name字段上方显示的缩略图
                                 previewImgUrl:
-                                    "https://img01.yzcdn.cn/vant/apple-1.jpg", // 用于预览显示的规格类目图片
+                                    "https://img01.yzcdn.cn/vant/apple-1.jpg", // 缩略图数组,重复url将不显示
                             },
                             {
                                 id: 1002,
